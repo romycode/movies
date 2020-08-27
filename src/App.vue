@@ -1,8 +1,15 @@
 <template>
   <div id="app">
     <TheHeader />
-    <TheGenre />
-    <router-view></router-view>
+    <div class="hero is-fullheight-with-navbar">
+      <div class="hero-head">
+        <TheGenre />
+      </div>
+      <div class="hero-body ">
+        <router-view></router-view>
+      </div>
+      <div class="hero-foot"></div>
+    </div>
   </div>
 </template>
 

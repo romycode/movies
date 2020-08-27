@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs has-background-white">
+  <div class="tabs has-background-white my-0">
     <ul>
       <li class="is-active"><a>Action</a></li>
       <li><a>Drama</a></li>
@@ -17,7 +17,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import OpenMovieDatabaseApi from "@/services/OpenMovieDatabaseApi";
 
 @Component
 export default class TheGenre extends Vue {
@@ -32,7 +31,6 @@ $orange: #ffaa5f;
 li.is-active {
   a {
     color: $orange !important;
-    border-bottom-color: $orange !important;
   }
 }
 </style>

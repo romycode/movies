@@ -5,8 +5,19 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "",
-    component: () => import("@/views/Main.vue")
+    path: "/",
+    redirect: { name: "search.main" }
+  },
+  {
+    path: "/search",
+    component: () => import("@/views/Main.vue"),
+    children: [
+      {
+        path: "",
+        name: "search.main",
+        component: () => import("@/components/List.vue")
+      }
+    ]
   }
 ];
 

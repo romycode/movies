@@ -1,5 +1,9 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav
+    class="navbar is-fixed-top is-fixed-top-desktop is-fixed-top-touch"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <div class="navbar-brand is-ce">
       <img src="/img/movies.png" alt="" class="my-1 px-1" data-v-9a9f6144="" width="50" height="45" />
       <div class="navbar-item no-hover has-text-black has-text-weight-bold" style="font-size: 1.25em;">

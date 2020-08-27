@@ -1,7 +1,5 @@
 <template>
-  <div class="hero is-fullheight-with-navbar is-fullwidth">
-    <div class="hero-body"></div>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
