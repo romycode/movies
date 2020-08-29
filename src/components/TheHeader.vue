@@ -23,7 +23,7 @@
       </div>
       <div class="navbar-end">
         <div v-if="false" class="navbar-item no-hover">
-          <TheSearch />
+          <Search />
         </div>
       </div>
     </div>
@@ -32,10 +32,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TheSearch from "@/components/TheSearch.vue";
+import Search from "@/components/Search.vue";
 
 @Component({
-  components: { TheSearch }
+  components: { Search }
 })
 export default class TheHeader extends Vue {
   get path(): string {

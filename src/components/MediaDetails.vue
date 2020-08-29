@@ -20,7 +20,7 @@
           <div class="column is-full">
             <div class="level">
               <div class="level-left">
-                <h1 class="title my-0">{{ `${media.Title} ( ${media.Year} )` }}</h1>
+                <h1 class="title my-0">{{ `${media.Title} ( ${year} )` }}</h1>
               </div>
               <div class="level-right">
                 <span class="tag is-black is-large">{{ media.Rated.replace(/PG-|TV-/, "+") }}</span>
@@ -39,14 +39,14 @@
           </div>
           <div class="column is-10">
             <div class="container is-vertical">
-              <p class="mb-2"><strong>Director:</strong> {{ media.Director }}</p>
+              <p class="mb-2" v-show="media.Director !== 'N/A'"><strong>Director:</strong> {{ media.Director }}</p>
               <p class="mb-2"><strong>Actors:</strong> {{ media.Actors }}</p>
               <p class="mb-2"><strong>Runtime:</strong> {{ media.Runtime }}</p>
               <p class="mb-2"><strong>Plot:</strong> {{ media.Plot }}</p>
               <p class="mb-2"><strong>Country:</strong> {{ media.Country }}</p>
               <p class="mb-2"><strong>Languages:</strong> {{ media.Language }}</p>
-              <p class="mb-2"><strong>Production:</strong> {{ media.Production }}</p>
-              <p class="mb-2"><strong>Income:</strong> {{ media.BoxOffice }}</p>
+              <p class="mb-2" v-show="media.Production"><strong>Production:</strong> {{ media.Production }}</p>
+              <p class="mb-2" v-show="media.BoxOffice"><strong>Income:</strong> {{ media.BoxOffice }}</p>
             </div>
           </div>
         </div>
@@ -86,6 +86,20 @@ export default class MediaDetails extends Vue {
       return 5 - (parseInt(this.media.imdbRating) % 5);
     }
     return 0;
+  }
+
+  get year(): string {
+    if (null !== this.media) {
+      if (this.media.Year.slice(4, 5) === "–") {
+        return (
+          this.media.Year.slice(0, 4) +
+          " - " +
+          (this.media.Year.slice(6, 10) !== "" ? this.media.Year.slice(5, 10) : "Now")
+        );
+      }
+      return this.media.Year;
+    }
+    return "";
   }
 }
 </script>
