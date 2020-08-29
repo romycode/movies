@@ -4,7 +4,7 @@
     role="navigation"
     aria-label="main navigation"
   >
-    <div class="navbar-brand is-ce">
+    <div class="navbar-brand" @click="$router.push('/')">
       <img src="/img/movies.png" alt="" class="my-1 px-1" data-v-9a9f6144="" width="50" height="45" />
       <div class="navbar-item no-hover has-text-black has-text-weight-bold" style="font-size: 1.25em;">
         <h1>Media Finder</h1>
@@ -22,7 +22,7 @@
         <!--        </a>-->
       </div>
       <div class="navbar-end">
-        <div class="navbar-item no-hover">
+        <div v-if="false" class="navbar-item no-hover">
           <TheSearch />
         </div>
       </div>

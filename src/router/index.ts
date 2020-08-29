@@ -15,9 +15,19 @@ const routes: Array<RouteConfig> = [
       {
         path: "",
         name: "search.main",
-        component: () => import("@/components/List.vue")
+        component: () => import("@/components/Principal.vue")
       }
     ]
+  },
+  {
+    path: "/movie/:id",
+    component: () => import("@/components/MediaDetails.vue"),
+    name: "movie.details"
+  },
+  {
+    path: "/serie/:id",
+    component: () => import("@/components/MediaDetails.vue"),
+    name: "serie.details"
   }
 ];
 

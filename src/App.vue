@@ -2,10 +2,10 @@
   <div id="app">
     <TheHeader />
     <div class="hero is-fullheight-with-navbar">
-      <div class="hero-head">
+      <div v-if="false" class="hero-head">
         <TheGenre />
       </div>
-      <div class="hero-body ">
+      <div class="hero-body py-2">
         <router-view></router-view>
       </div>
       <div class="hero-foot"></div>

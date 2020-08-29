@@ -5,10 +5,12 @@
         <h1 class="title my-0">
           {{ title }}
         </h1>
-        <hr class="my-1" />
+        <hr class="my-0 mt-2" />
       </div>
-      <div class="hero-body">
-        <div class="container"></div>
+      <div class="hero-body py-2 px-1">
+        <div class="container slider-horitzontal">
+          <slot></slot>
+        </div>
       </div>
     </div>
   </section>
@@ -27,4 +29,9 @@ export default class HoritzontalPreview extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.slider-horitzontal {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+</style>

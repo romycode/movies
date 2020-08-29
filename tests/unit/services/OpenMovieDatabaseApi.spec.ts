@@ -1,6 +1,7 @@
 import OpenMovieDatabaseApi from "@/services/OpenMovieDatabaseApi";
 import { Movie } from "@/types/movies/Movie";
 import { PreviewInfo } from "@/types/movies/PreviewInfo";
+import Serie from "@/types/movies/Serie";
 
 describe("OpenMovieDatabaseApi.ts", () => {
   it("Fetch one movie by title", async () => {
@@ -47,12 +48,47 @@ describe("OpenMovieDatabaseApi.ts", () => {
       Website: "N/A",
       Response: "True"
     };
-    const actual = await repository.findByTitle(movieTitle, false);
+    const actual = await repository.findMovieByTitle(movieTitle, false);
 
     expect(actual).toStrictEqual(expected);
   });
 
-  it("Fetch one movie by ID", async () => {
+  it("Fetch one serie by title", async () => {
+    const serieTitle = "Lucifer";
+    const repository = new OpenMovieDatabaseApi("5c287478");
+
+    const expected: Serie = {
+      Title: "Lucifer",
+      Year: "2016–",
+      Rated: "TV-14",
+      Released: "25 Jan 2016",
+      Runtime: "42 min",
+      Genre: "Crime, Drama, Fantasy",
+      Director: "N/A",
+      Writer: "Tom Kapinos",
+      Actors: "Tom Ellis, Lauren German, Kevin Alejandro, Lesley-Ann Brandt",
+      Plot:
+        "Lucifer Morningstar has decided he's had enough of being the dutiful servant in Hell and decides to spend some time on Earth to better understand humanity. He settles in Los Angeles - the City of Angels.",
+      Language: "English",
+      Country: "USA",
+      Awards: "10 nominations.",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNzY1YjIxOGMtOTAyZC00YTcyLWFhMzQtZTJkYTljYzU0MGRlXkEyXkFqcGdeQXVyMTAwMzM3NDI3._V1_SX300.jpg",
+      Ratings: [{ Source: "Internet Movie Database", Value: "8.2/10" }],
+      Metascore: "N/A",
+      imdbRating: "8.2",
+      imdbVotes: "200,581",
+      imdbID: "tt4052886",
+      Type: "series",
+      totalSeasons: "5",
+      Response: "True"
+    };
+    const actual = await repository.findSerieByTitle(serieTitle, false);
+
+    expect(actual).toStrictEqual(expected);
+  });
+
+  it("Fetch one movie/serie by ID", async () => {
     const movieId = "tt0113497";
     const repository = new OpenMovieDatabaseApi("5c287478");
 
@@ -101,7 +137,7 @@ describe("OpenMovieDatabaseApi.ts", () => {
     expect(actual).toStrictEqual(expected);
   });
 
-  it("Fetch one movie by title with full plot", async () => {
+  it("Fetch one movie/serie by title with full plot", async () => {
     const movieId = "tt0113497";
     const repository = new OpenMovieDatabaseApi("5c287478");
 
@@ -150,7 +186,7 @@ describe("OpenMovieDatabaseApi.ts", () => {
     expect(actual).toStrictEqual(expected);
   });
 
-  it("Fetch ten movie by title with full plot", async () => {
+  it("Fetch 10 movies by title with full plot", async () => {
     const search = "run";
     const repository = new OpenMovieDatabaseApi("5c287478");
 
@@ -236,7 +272,98 @@ describe("OpenMovieDatabaseApi.ts", () => {
           "https://m.media-amazon.com/images/M/MV5BZDk1MmVmMWYtYzU3Mi00OWViLWJjMjYtOTFhZWJjNjdmZGQ0XkEyXkFqcGdeQXVyNDc2NjEyMw@@._V1_SX300.jpg"
       }
     ];
-    const actual = await repository.findByWord(search, true);
+    const actual = await repository.findMoviesByWord(search, true);
+
+    expect(actual).toStrictEqual(expected);
+  });
+
+  it("Fetch 10 series by title with full plot", async () => {
+    const search = "run";
+    const repository = new OpenMovieDatabaseApi("5c287478");
+
+    const expected: Array<PreviewInfo> = [
+      {
+        Title: "Run",
+        Year: "2020–",
+        imdbID: "tt8045468",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BNjQ2YmMyYmEtZGNmMS00NjhhLTkxNDMtYmIzMTRkZjIwMDZmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg"
+      },
+      {
+        Title: "Logan's Run",
+        Year: "1977–1978",
+        imdbID: "tt0075527",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BMTU1MTYwNjE5OF5BMl5BanBnXkFtZTgwMDk2NDkwMDE@._V1_SX300.jpg"
+      },
+      {
+        Title: "Run",
+        Year: "2013",
+        imdbID: "tt2297604",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BMTQ3MzEwMTk0NV5BMl5BanBnXkFtZTgwMjUxOTIyMDE@._V1_SX300.jpg"
+      },
+      {
+        Title: "See Dad Run",
+        Year: "2012–2019",
+        imdbID: "tt2382108",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BYjUzZTJkOGUtMzFhMC00NmEzLWE5OGUtNGNmMmFkOTAzYjgyXkEyXkFqcGdeQXVyMjE0MDQ4NTQ@._V1_SX300.jpg"
+      },
+      {
+        Title: "In the Long Run",
+        Year: "2018–",
+        imdbID: "tt7464074",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BZDQ4MzQwNjItMDhlYi00ZDk3LWJkNjAtYzZhMGE2NTM0ODhhXkEyXkFqcGdeQXVyNDI2NzczOTg@._V1_SX300.jpg"
+      },
+      {
+        Title: "All the Rivers Run",
+        Year: "1983–",
+        imdbID: "tt0086663",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BNTEwY2U0ZGMtMTE4YS00NzAyLWE0MmItNTMzZDEzYTUwZDNmXkEyXkFqcGdeQXVyNzMzMjU5NDY@._V1_SX300.jpg"
+      },
+      {
+        Title: "Run BTS!",
+        Year: "2015–",
+        imdbID: "tt7865962",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BY2MwMzk1M2ItYzI4My00OGE1LTkwMzMtZDM0YWZjMGM3YTBiXkEyXkFqcGdeQXVyMzE4MDkyNTA@._V1_SX300.jpg"
+      },
+      {
+        Title: "Coogan's Run",
+        Year: "1995–",
+        imdbID: "tt0111925",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BNWZhNjk1YWMtOTczMC00NmQzLTlkYzktYTYwNDg2NzY2NjhkXkEyXkFqcGdeQXVyMTk3NDAwMzI@._V1_SX300.jpg"
+      },
+      {
+        Title: "Run with the Wind",
+        Year: "2018–",
+        imdbID: "tt9402026",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BMzcyZDQ1YTEtOWE5Ni00NjQ5LWJmYWYtMTY0NGNlMTc2MzM2XkEyXkFqcGdeQXVyMjI5MjU5OTI@._V1_SX300.jpg"
+      },
+      {
+        Title: "Run for Your Life",
+        Year: "1965–1968",
+        imdbID: "tt0058844",
+        Type: "series",
+        Poster:
+          "https://m.media-amazon.com/images/M/MV5BMmNlMDY3NTEtNzI3NS00MzJjLWE1MjctZGRlOThmZmE3YzkyXkEyXkFqcGdeQXVyMTQ3Njg3MQ@@._V1_SX300.jpg"
+      }
+    ];
+    const actual = await repository.findSeriesByWord(search, true);
 
     expect(actual).toStrictEqual(expected);
   });
